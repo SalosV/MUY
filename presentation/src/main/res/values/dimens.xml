@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="not_height">0dp</dimen>
+    <dimen name="not_width">0dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+    <dimen name="size_card">56dp</dimen>
+    <dimen name="separator">1dp</dimen>
+    <dimen name="card_radius">8dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="start_text">16dp</dimen>
+    <dimen name="text">20sp</dimen>
+    <dimen name="margin_end_salary">4dp</dimen>
+</resources>

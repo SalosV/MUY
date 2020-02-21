@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MUY</string>
+    <string name="action_search">Buscador</string>
+    <string name="search">Buscar...</string>
+    <string name="empty" />
+    <string name="action_cancel">Cancelar</string>
+    <string name="detail">Detalle</string>
+    <string name="dependents">Personas a cargo:</string>
+    <string name="status">Estado</string>
+    <string name="save">Guardar</string>
+    <string name="workers_new">Empleados nuevos</string>
+    <string name="workers_all">Todos los empleados</string>
+
+    <string-array name="statusNew">
+        <item>Antiguo</item>
+        <item>Nuevo</item>
+    </string-array>
+</resources>
