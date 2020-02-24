@@ -1,12 +1,13 @@
 package com.muy.data.home
 
+import com.google.gson.GsonBuilder
 import com.muy.data.DataApp
 import com.muy.data.Service.MuyServiceManager.service
-import com.muy.data.utils.NameWorkers.*
 import com.muy.domain.home.Employee
 import com.muy.domain.home.WorkersRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 class WorkersRepositoryImp(
     application: DataApp
@@ -22,31 +23,31 @@ class WorkersRepositoryImp(
                 val response = service.getWorkers()
                 if (response.isSuccessful) {
                     response.body()?.run {
-                        val workersList: ArrayList<WorkerEntity> = arrayListOf()
+                        val gsonBuilder = GsonBuilder()
+                        gsonBuilder.serializeNulls()
 
-                        this.carlosVelasquez.fullName = CARLOSVELAZQUES.fullName
-                        this.mateoRodriguez.fullName = MATEORODRIGUEZ.fullName
-                        this.germanRamirez.fullName = GERMANRAMIREZ.fullName
-                        this.ricardoZuniga.fullName = RICARDOZUNIGA.fullName
-                        this.oscarZuluaga.fullName = OSCARZUALUAGA.fullName
-                        this.gerardoAlvarez.fullName = GERARDOALVAREZ.fullName
-                        this.miguelCarvajal.fullName = MIGUELCARVAJAL.fullName
-                        this.carlosBeltran.fullName = CARLOSBELTRAN.fullName
-                        this.diegoBermeo.fullName = DIEGOBERMEO.fullName
-                        this.fernandoVargas.fullName = FERNANDOVARGAS.fullName
+                        val gson = gsonBuilder.create()
+                        val information: String = gson.toJson(this)
 
-                        workersList.add(this.carlosVelasquez.toDatabaseEntity())
-                        workersList.add(this.mateoRodriguez.toDatabaseEntity())
-                        workersList.add(this.germanRamirez.toDatabaseEntity())
-                        workersList.add(this.ricardoZuniga.toDatabaseEntity())
-                        workersList.add(this.oscarZuluaga.toDatabaseEntity())
-                        workersList.add(this.gerardoAlvarez.toDatabaseEntity())
-                        workersList.add(this.miguelCarvajal.toDatabaseEntity())
-                        workersList.add(this.carlosBeltran.toDatabaseEntity())
-                        workersList.add(this.diegoBermeo.toDatabaseEntity())
-                        workersList.add(this.fernandoVargas.toDatabaseEntity())
+                        val json = JSONObject(information)
+                        val iterator = json.keys()
 
-                        insertWorkers(workersList)
+                        while (iterator.hasNext()) {
+                            val key = iterator.next() as String
+                            val data = json.getJSONObject(key)
+
+                            val employee = WorkerEntity(
+                                id = data.getInt("id"),
+                                fullName =  key,
+                                position = data.getString("position"),
+                                salary = data.getInt("salary"),
+                                phone = data.getString("phone"),
+                                email = data.getString("email"),
+                                upperRelation = data.getInt("upperRelation")
+                            )
+
+                            insertWorkers(employee)
+                        }
                     }
                 }
             }

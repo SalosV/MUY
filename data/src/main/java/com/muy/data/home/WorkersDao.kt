@@ -18,7 +18,7 @@ interface WorkersDao {
     fun findEmployee(id: Int): WorkerEntity
 
     @Insert(onConflict = IGNORE)
-    fun insertWorkers(workers: List<WorkerEntity>)
+    fun insertWorkers(workers: WorkerEntity)
 
     @Query("UPDATE WorkerEntity SET isNew = :isNew WHERE id = :idEmployee")
     fun updateEmployee(isNew: Boolean, idEmployee: Int)

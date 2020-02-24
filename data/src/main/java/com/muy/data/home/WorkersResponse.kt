@@ -1,5 +1,6 @@
 package com.muy.data.home
 
+import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 import com.muy.domain.utils.EMPTY_INT
 import com.muy.domain.utils.EMPTY_STRING

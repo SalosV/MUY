@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface MuyServiceAPI {
 
     @GET("/slozanomuy/Services/master/RH.json")
-    suspend fun getWorkers(): Response<WorkersResponse>
+    suspend fun getWorkers(): Response<Any>
 
 }
